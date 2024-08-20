@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Circuitos Lógicos</title>
+    <style>
+        /* Estilos básicos para el diseño */
+        #circuito {
+            margin: 20px;
+        }
+        .entrada {
+            display: inline-block;
+            margin: 5px;
+        }
+        .led {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red; /* LED apagado */
+            transition: background 0.3s;
+        }
+        .led.on {
+            background: green; /* LED encendido */
+        }
+        #tabla-verdad {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #tabla-verdad th, #tabla-verdad td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #canvas {
+            border: 1px solid #000;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div id="circuito">
+        <label for="compuerta">Seleccionar Compuerta:</label>
+        <select id="compuerta">
+            <option value="AND">AND</option>
+            <option value="OR">OR</option>
+            <option value="NOT">NOT</option>
+            <option value="IF">IF</option> <!-- Opción para la compuerta IF -->
+            <option value="NAND">NAND</option>
+            <option value="NOR">NOR</option>
+            <option value="XOR">XOR</option>
+            <option value="XNOR">XNOR</option>
+        </select>
+
+        <label for="numEntradas">Número de Entradas:</label>
+        <input type="number" id="numEntradas" min="1" value="2">
+        <button id="crearCircuito">Crear Circuito</button>
+    </div>
+    <div id="entradas"></div>
+    <div id="salida"></div>
+    <table id="tabla-verdad"></table>
+    
+    <canvas id="canvas" width="600" height="400" style="border:1px solid #000;"></canvas>
+
+    <script src="js/sim.js"></script>
+    <script>
+        // Llama a la función desde el archivo JS
+        document.getElementById('compuerta').addEventListener('change', function() {
+            const tipoCompuerta = this.value;
+            // Aquí puedes definir la posición o recibirla de otro modo
+            dibujarCompuerta(tipoCompuerta, 50, 50); // Dibuja en una posición fija
+        });
+    </script>
+</body>
+</html>
